@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Takasbank Para Yatırma Rehberi</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003366;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #003366;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #e0e7ff;
+    }
+    .note {
+      background: #fff4e5;
+      padding: 15px;
+      border-left: 5px solid #ffa500;
+      margin: 20px 0;
+    }
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead tr {
+        display: none;
+      }
+      tr {
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #fff;
+      }
+      td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Takasbank Para Yatırma Rehberi</h1>
+  </header>
+  <main>
+    <p>
+      Takasbank bireysel bankacılık hizmeti sunmaz. Ancak sermaye piyasası işlemleri için para gönderme işlemlerinizde aracı kurumların Takasbank üzerindeki hesapları kullanılmaktadır.
+    </p>
+
+    <h2>Para Yatırma Noktası: Takasbank IBAN</h2>
+    <p>Para gönderirken aşağıdaki bilgileri bilmeniz gerekir:</p>
+    <ul>
+      <li><strong>IBAN:</strong> Aracı kuruma özel Takasbank IBAN'ı</li>
+      <li><strong>Açıklama:</strong> Hesap numaranız, ad-soyad veya referans kodu</li>
+    </ul>
+
+    <div class="note">
+      🔔 <strong>Not:</strong> Açıklama kısmını eksiksiz doldurmazsanız işleminiz gecikebilir.
+    </div>
+
+    <h2>Canlı IBAN Bilgileri</h2>
+    <table id="ibanTable">
+      <thead>
+        <tr>
+          <th>Aracı Kurum</th>
+          <th>IBAN</th>
+          <th>Açıklama Formatı</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dinamik veri buraya gelecek -->
+      </tbody>
+    </table>
+
+    <h2>Özet Adımlar</h2>
+    <table>
+      <tr>
+        <th>Adım</th>
+        <th>Açıklama</th>
+      </tr>
+      <tr>
+        <td data-label="Adım">1️⃣</td>
+        <td data-label="Açıklama">İşlem yapacağınız aracı kurumla iletişime geçin veya web sitesine girin.</td>
+      </tr>
+      <tr>
+        <td data-label="Adım">2️⃣</td>
+        <td data-label="Açıklama">Size iletilen Takasbank IBAN’ını kullanarak bankanızdan EFT yapın.</td>
+      </tr>
+      <tr>
+        <td data-label="Adım">3️⃣</td>
+        <td data-label="Açıklama">Açıklama kısmına hesap numaranız veya referans kodunu yazın.</td>
+      </tr>
+    </table>
+
+    <p>Daha fazla bilgi için yatırım yaptığınız aracı kurumun "Para Yatırma" sayfasını ziyaret edin.</p>
+  </main>
+
+  <script>
+    const kurumVerileri = [
+      {
+        kurum: "OYAK Yatırım",
+        iban: "TR77 0013 2000 0000 0000 0019 13",
+        format: "Hesap No + Ad Soyad"
+      },
+      {
+        kurum: "InvestAZ",
+        iban: "TR68 0013 2000 0000 0000 0208 93",
+        format: "Referans Kodu"
+      },
+      {
+        kurum: "Global Menkul",
+        iban: "TR11 0013 2000 0000 0000 0150 01",
+        format: "Hesap No veya Kullanıcı Kodu"
+      }
+    ];
+
+    const tbody = document.querySelector("#ibanTable tbody");
+    kurumVerileri.forEach(kurum => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td data-label="Aracı Kurum">${kurum.kurum}</td>
+        <td data-label="IBAN">${kurum.iban}</td>
+        <td data-label="Açıklama Formatı">${kurum.format}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
